@@ -25,12 +25,13 @@ def clean_text(dataframe):
     # Elimine la puntuación y convierta el texto a minúsculas.
     #
     dataframe = dataframe.copy()
-    dataframe['word'] = dataframe['word'].str.lower().srt.replace(',','').str.replace('.','')
+    dataframe['text'] = dataframe['text'].str.lower().srt.replace(',','').str.replace('.','')
     return dataframe
 
 def count_words(dataframe):
     """Word count"""
     dataframe = dataframe.copy()
+    dataframe = dataframe.rename(columns={'text': 'word'})
     dataframe['word'] = dataframe['word'].str.split().explode('word').reset_index(drop=True)
     dataframe['count'] = 1
     conteo = dataframe.groupby(['word'],as_index=False).agg({'count':'sum'})
