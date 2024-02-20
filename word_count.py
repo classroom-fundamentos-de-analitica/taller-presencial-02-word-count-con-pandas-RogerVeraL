@@ -14,7 +14,7 @@ def load_input(input_directory):
     #   
     filenames = glob.glob(input_directory + "/*.*")
     dataframes = [
-        pd.read_csv(filename, sep = ";" ) for filename in filenames
+        pd.read_csv(filename, sep = ";" , names=['text']) for filename in filenames
     ]
     dataframe = pd.concat(dataframes).reset_index(drop=True)
     return dataframe
