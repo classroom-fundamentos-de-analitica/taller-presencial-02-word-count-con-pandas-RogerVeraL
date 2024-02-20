@@ -12,7 +12,7 @@ def load_input(input_directory):
     # un DataFrame de Pandas. Cada línea del archivo de texto debe ser una
     # entrada en el DataFrame.
     #   
-    filenames = glob.glob(input_directory + "/*.txt")
+    filenames = glob.glob(input_directory + "/*.*")
     dataframes = [
         pd.read_csv(filename, sep = ";" ) for filename in filenames
     ]
