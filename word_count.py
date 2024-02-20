@@ -11,8 +11,11 @@ def load_input(input_directory):
     # Lea los archivos de texto en la carpeta input/ y almacene el contenido en
     # un DataFrame de Pandas. Cada línea del archivo de texto debe ser una
     # entrada en el DataFrame.
-    #
-
+    #   
+    filenames = glob.glob(input_directory + "/*.txt")
+    dataframes = [
+        pd.read_csv(filename, sep = ";" ) for filename in filenames
+    ]
 
 def clean_text(dataframe):
     """Text cleaning"""
@@ -34,6 +37,8 @@ def save_output(dataframe, output_filename):
 #
 def run(input_directory, output_filename):
     """Call all functions."""
+    dataframe = load_input(input_directory)
+    return dataframe
 
 
 if __name__ == "__main__":
