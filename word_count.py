@@ -16,13 +16,17 @@ def load_input(input_directory):
     dataframes = [
         pd.read_csv(filename, sep = ";" ) for filename in filenames
     ]
+    dataframe = pd.concat(dataframes).reset_index(drop=True)
+    return dataframe
 
 def clean_text(dataframe):
     """Text cleaning"""
     #
     # Elimine la puntuación y convierta el texto a minúsculas.
     #
-
+    dataframe = dataframe.copy()
+    dataframe['text'] = dataframe['text'].str.lower().srt.replace(',','').str.replace('.','')
+    return dataframe
 
 def count_words(dataframe):
     """Word count"""
